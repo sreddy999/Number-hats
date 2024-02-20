@@ -1,0 +1,31 @@
+import random
+import numpy as np
+import matplotlib.pyplot as plt
+
+finals = []
+unique = []
+def take(n):
+    global hat
+    hat = []
+    for i in range(n):
+        hat.append(i+1)
+    while len(hat) > 1:
+        a = random.randint(0,len(hat)-1)
+        b = random.randint(0,len(hat)-1)
+        while a == b:
+            a = random.randint(0,len(hat)-1)
+            b = random.randint(0,len(hat)-1)
+        c = abs(hat[b]-hat[a])
+        if a < b:
+            hat.pop(b)
+            hat.pop(a)
+            hat.append(c)
+        else:
+            hat.pop(a)
+            hat.pop(b)
+            hat.append(c)
+results = []
+for i in range(10000):
+    take(2024)
+    results.append(hat[0])
+results.hist()
